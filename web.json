@@ -1,0 +1,28 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "chef/ubuntu-14.04",
+      "commit": true
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "chef-solo",
+      "cookbook_paths": ["berks-cookbooks"],
+      "run_list": [ "railspeppers::web" ],
+      "skip_install": true,
+      "prevent_sudo": true
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type": "docker-tag",
+      "repository": "orioneteam/web",
+      "tag": "0.1.0"
+    },
+    "docker-push"
+  ]
+}

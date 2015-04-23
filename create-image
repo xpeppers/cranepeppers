@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+imageName=$1
+
+rm -rf berks-cookbooks
+berks vendor
+berks update
+
+env $(cat .env | xargs) packer build $imageName.json
