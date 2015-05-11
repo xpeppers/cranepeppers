@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "docker",
-      "image": "ruby:2.2",
+      "image": "ruby:2.2.2",
       "commit": true
     }
   ],
@@ -17,11 +17,13 @@
   ],
 
   "post-processors": [
-    {
-      "type": "docker-tag",
-      "repository": "orioneteam/rails",
-      "tag": "0.1.0"
-    },
-    "docker-push"
+    [
+      {
+        "type": "docker-tag",
+        "repository": "xpeppers/rails",
+        "tag": "latest"
+      },
+      "docker-push"
+    ]
   ]
 }
